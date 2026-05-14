@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import logo from '../assets/logo.png'
 import '../styles/Navbar.css'
 
 export default function Navbar() {
@@ -21,9 +22,11 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <a href="#home" className="navbar__logo">
-        <span className="navbar__logo-elevate">ELEVATE</span>
-        <span className="navbar__logo-divider" />
-        <span className="navbar__logo-ds">DIGITAL SOLUTIONS</span>
+        <img src={logo} alt="Elevate Digital Solutions" className="navbar__logo-img" />
+        <span className="navbar__logo-text">
+          <span className="navbar__logo-elevate">ELEVATE</span>
+          <span className="navbar__logo-ds">DIGITAL SOLUTIONS</span>
+        </span>
       </a>
 
       <ul className="navbar__links">

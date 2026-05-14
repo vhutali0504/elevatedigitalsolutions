@@ -20,31 +20,38 @@
 .footer__logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.75rem;
   margin-bottom: 1.25rem;
+}
+
+.footer__logo-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.footer__logo-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
 }
 
 .footer__logo-elevate {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 800;
   letter-spacing: 0.04em;
   color: var(--white);
-}
-
-.footer__logo-divider {
-  width: 1px;
-  height: 16px;
-  background: var(--border);
-  flex-shrink: 0;
+  line-height: 1;
 }
 
 .footer__logo-ds {
   font-family: var(--font-display);
-  font-size: 0.65rem;
+  font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   color: var(--blue);
+  line-height: 1;
 }
 
 .footer__tagline {

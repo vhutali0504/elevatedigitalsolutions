@@ -1,3 +1,4 @@
+import logo from '../assets/logo.png'
 import '../styles/Footer.css'
 
 const links = [
@@ -13,9 +14,11 @@ export default function Footer() {
       <div className="footer__top">
         <div className="footer__brand">
           <a href="#home" className="footer__logo">
-            <span className="footer__logo-elevate">ELEVATE</span>
-            <span className="footer__logo-divider" />
-            <span className="footer__logo-ds">DIGITAL SOLUTIONS</span>
+            <img src={logo} alt="Elevate Digital Solutions" className="footer__logo-img" />
+            <span className="footer__logo-text">
+              <span className="footer__logo-elevate">ELEVATE</span>
+              <span className="footer__logo-ds">DIGITAL SOLUTIONS</span>
+            </span>
           </a>
           <p className="footer__tagline">
             Professional websites, booking systems, and online stores for
