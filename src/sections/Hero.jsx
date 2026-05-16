@@ -4,7 +4,8 @@ export default function Hero() {
   return (
     <section className="hero" id="home">
       <div className="hero__bg" />
-      <div className="hero__grid" />
+     {/* <div className="hero__grid" />*/}
+      <div className="hero__content"></div>
 
       <div className="hero__content">
         <div className="hero__tag">Johannesburg, South Africa</div>
