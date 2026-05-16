@@ -1,5 +1,10 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import '../styles/Contact.css'
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const services = [
   'Landing page',
@@ -19,17 +24,35 @@ export default function Contact() {
     message: '',
   })
 
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState('idle') // idle | loading | success | error
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // TODO: wire up to EmailJS or your backend endpoint
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
+    setStatus('loading')
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,
+          business: formData.business,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.service,
+          message: formData.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      )
+      setStatus('success')
+    } catch (error) {
+      console.error('EmailJS error:', error)
+      setStatus('error')
+    }
   }
 
   return (
@@ -63,17 +86,17 @@ export default function Contact() {
             <div className="contact__detail">
               <span className="contact__detail-label">Email</span>
               <a
-                href="mailto:hello@elevatedigital.co.za"
+                href="mailto:hello@elevate-digitalsolutions.co.za"
                 className="contact__detail-val contact__detail-val--link"
               >
-                hello@elevatedigital.co.za
+                hello@elevate-digitalsolutions.co.za
               </a>
             </div>
           </div>
         </div>
 
         <div className="contact__form-wrap">
-          {submitted ? (
+          {status === 'success' ? (
             <div className="contact__success">
               <div className="contact__success-icon">✓</div>
               <h3>Message sent!</h3>
@@ -160,8 +183,18 @@ export default function Contact() {
                 />
               </div>
 
-              <button type="submit" className="btn-primary contact__submit">
-                Send message
+              {status === 'error' && (
+                <p className="contact__error">
+                  Something went wrong. Please try again or send us a WhatsApp directly.
+                </p>
+              )}
+
+              <button
+                type="submit"
+                className="btn-primary contact__submit"
+                disabled={status === 'loading'}
+              >
+                {status === 'loading' ? 'Sending...' : 'Send message'}
               </button>
             </form>
           )}
