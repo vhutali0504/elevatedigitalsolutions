@@ -1,0 +1,156 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* ─── Background ─── */
+
+.loader__bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    rgba(27, 79, 216, 0.15) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: loaderPulse 2s ease-in-out infinite;
+}
+
+@keyframes loaderPulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+.loader__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* ─── EDS letters ─── */
+
+.loader__eds {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 18vw, 12rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: transparent;
+  background: linear-gradient(
+    160deg,
+    rgba(200, 220, 255, 0.95) 0%,
+    rgba(120, 170, 255, 0.85) 20%,
+    rgba(27, 79, 216, 0.9) 45%,
+    rgba(180, 200, 255, 0.9) 70%,
+    rgba(200, 215, 255, 0.95) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 200% 200%;
+  filter:
+    drop-shadow(0 0 30px rgba(27, 79, 216, 0.7))
+    drop-shadow(0 0 80px rgba(27, 79, 216, 0.4))
+    drop-shadow(0 0 140px rgba(27, 79, 216, 0.2));
+  animation: loaderShimmer 3s ease-in-out infinite;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes loaderShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ─── Brand name ─── */
+
+.loader__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.loader__brand-elevate {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--white);
+}
+
+.loader__brand-divider {
+  width: 1px;
+  height: 14px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.loader__brand-ds {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--blue);
+}
+
+/* ─── Progress bar ─── */
+
+.loader__progress-wrap {
+  position: relative;
+  z-index: 1;
+  margin-top: 1.5rem;
+}
+
+.loader__progress {
+  width: 180px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loader__progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, var(--blue), #3B6FFF);
+  border-radius: 2px;
+  transition: width 0.03s linear;
+  box-shadow: 0 0 8px rgba(27, 79, 216, 0.8);
+}
+
+/* ─── Tagline ─── */
+
+.loader__tagline {
+  font-size: 0.72rem;
+  color: var(--gray);
+  letter-spacing: 0.06em;
+  margin-top: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Responsive ─── */
+
+@media (max-width: 768px) {
+  .loader__eds {
+    font-size: clamp(5rem, 22vw, 8rem);
+  }
+
+  .loader__progress {
+    width: 140px;
+  }
+}

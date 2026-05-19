@@ -1,0 +1,231 @@
+.cb {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  width: calc(100% - 3rem);
+  max-width: 680px;
+}
+
+.cb__box {
+  background: rgba(11, 11, 14, 0.92);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow:
+    0 16px 48px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ─── Header ─── */
+
+.cb__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.cb__icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.cb__title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+
+.cb__sub {
+  font-size: 0.8rem;
+  color: var(--gray);
+  line-height: 1.6;
+}
+
+/* ─── Preferences panel ─── */
+
+.cb__prefs {
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.cb__pref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cb__pref-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.cb__pref-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.cb__pref-desc {
+  font-size: 0.75rem;
+  color: var(--gray);
+  line-height: 1.5;
+}
+
+/* ─── Toggle ─── */
+
+.cb__toggle {
+  width: 40px;
+  height: 22px;
+  border-radius: 11px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+  padding: 0;
+}
+
+.cb__toggle--on {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.cb__toggle--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cb__toggle-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--white);
+  transition: transform 0.2s;
+  display: block;
+}
+
+.cb__toggle--on .cb__toggle-thumb {
+  transform: translateX(18px);
+}
+
+/* ─── Buttons ─── */
+
+.cb__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cb__btn {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  border: none;
+}
+
+.cb__btn--primary {
+  background: var(--blue);
+  color: #fff;
+}
+
+.cb__btn--primary:hover {
+  background: var(--blue-light);
+}
+
+.cb__btn--secondary {
+  background: rgba(27, 79, 216, 0.15);
+  border: 1px solid rgba(27, 79, 216, 0.3);
+  color: var(--white);
+}
+
+.cb__btn--secondary:hover {
+  background: rgba(27, 79, 216, 0.25);
+}
+
+.cb__btn--ghost {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--gray);
+}
+
+.cb__btn--ghost:hover {
+  color: var(--white);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cb__btn--text {
+  background: none;
+  color: var(--gray);
+  padding: 0.55rem 0.5rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.cb__btn--text:hover {
+  color: var(--white);
+}
+
+/* ─── Mobile ─── */
+
+@media (max-width: 768px) {
+  .cb {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: none;
+  }
+
+  .cb__box {
+    border-radius: 16px 16px 0 0;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+
+  .cb__title { font-size: 0.875rem; }
+  .cb__sub { font-size: 0.75rem; }
+
+  .cb__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .cb__btn--text {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 0.4rem;
+  }
+
+  .cb__btn {
+    font-size: 0.78rem;
+    padding: 0.65rem 0.5rem;
+    text-align: center;
+  }
+}

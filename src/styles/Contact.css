@@ -1,5 +1,4 @@
 .contact {
-  background: var(--bg);
   padding: 6rem 4rem;
 }
 
@@ -77,26 +76,32 @@
 .contact__field select,
 .contact__field textarea {
   width: 100%;
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   padding: 0.8rem 1rem;
   color: var(--white);
   font-family: var(--font-body);
   font-size: 0.9rem;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .contact__field input::placeholder,
 .contact__field textarea::placeholder {
-  color: #555560;
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .contact__field input:focus,
 .contact__field select:focus,
 .contact__field textarea:focus {
-  border-color: var(--blue);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 0 0 3px rgba(27, 79, 216, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .contact__field select {
@@ -121,6 +126,20 @@
   font-size: 0.95rem;
   margin-top: 0.25rem;
   text-align: center;
+}
+
+.contact__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.contact__error {
+  font-size: 0.85rem;
+  color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
 }
 
 /* ─── Success state ─── */

@@ -25,6 +25,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -34,6 +35,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
 }
 
 a {
@@ -78,6 +80,48 @@ button {
   margin-bottom: 3.5rem;
 }
 
+/* ─── iOS Liquid Glass Utilities ─── */
+
+.glass {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    transparent 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+  z-index: 0;
+}
+
 /* ─── Buttons ─── */
 
 .btn-primary {
@@ -89,12 +133,18 @@ button {
   font-size: 0.9rem;
   font-weight: 500;
   border: none;
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   cursor: pointer;
 }
 
 .btn-primary:hover {
   background: var(--blue-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(27, 79, 216, 0.35);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-ghost {
@@ -106,10 +156,112 @@ button {
   font-size: 0.9rem;
   font-weight: 500;
   background: none;
-  transition: border-color 0.2s, color 0.2s;
+  transition: border-color 0.2s, color 0.2s, transform 0.15s;
   cursor: pointer;
 }
 
 .btn-ghost:hover {
   border-color: var(--gray);
+  transform: translateY(-1px);
+}
+
+.btn-ghost:active {
+  transform: translateY(0);
+}
+
+/* ─── Ensure sections sit above particle canvas ─── */
+
+main > * {
+  position: relative;
+  z-index: 1;
+}
+
+nav, footer {
+  position: relative;
+  z-index: 10;
+}
+
+/* ─── Consistent background across all sections ─── */
+
+.services,
+.process,
+.about,
+.contact,
+.footer {
+  background: transparent !important;
+  position: relative;
+}
+
+.services::before,
+.process::before,
+.about::before,
+.contact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.25;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* subtle blue glow per section — alternates sides */
+.services::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(27, 79, 216, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.process::after {
+  content: '';
+  position: absolute;
+  bottom: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(27, 79, 216, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about::after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(27, 79, 216, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.contact::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(27, 79, 216, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* make sure section content sits above the pseudo elements */
+.services > *,
+.process > *,
+.about > *,
+.contact > * {
+  position: relative;
+  z-index: 1;
 }

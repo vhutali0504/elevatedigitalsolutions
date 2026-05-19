@@ -13,9 +13,13 @@
 }
 
 .navbar--scrolled {
-  background: rgba(11, 11, 14, 0.92);
-  backdrop-filter: blur(12px);
-  border-bottom-color: var(--border);
+  background: rgba(6, 8, 16, 0.6);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
 }
 
 /* ─── Logo ─── */
@@ -27,8 +31,8 @@
 }
 
 .navbar__logo-img {
-  width: 52px;
-  height: 52px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
 }
 
@@ -106,12 +110,15 @@
   top: 100%;
   left: 0;
   right: 0;
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  background: rgba(6, 8, 16, 0.7);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   padding: 1.5rem 2rem;
   gap: 1.2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .navbar__mobile a {
@@ -146,8 +153,8 @@
   }
 
   .navbar__logo-img {
-    width: 42px;
-    height: 42px;
+    width: 32px;
+    height: 32px;
   }
 
   .navbar__logo-elevate {

@@ -1,5 +1,4 @@
 .services {
-  background: var(--surface);
   padding: 6rem 4rem;
 }
 
@@ -39,27 +38,62 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 1.5rem;
+  padding-top: 1rem;
 }
 
 /* ─── Package card ─── */
 
 .pkg-card {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   padding: 2rem;
   position: relative;
   display: flex;
   flex-direction: column;
-  transition: border-color 0.2s;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.pkg-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.45), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.pkg-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 50%);
+  pointer-events: none;
+  border-radius: 16px;
+  z-index: 0;
 }
 
 .pkg-card:hover {
-  border-color: rgba(27, 79, 216, 0.4);
+  transform: translateY(-6px);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .pkg-card--featured {
-  border-color: var(--blue);
+  background: rgba(27, 79, 216, 0.15);
+  border-color: rgba(27, 79, 216, 0.4);
+  box-shadow:
+    0 8px 40px rgba(27, 79, 216, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .pkg-card__badge {

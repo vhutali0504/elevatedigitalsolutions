@@ -1,5 +1,4 @@
 .about {
-  background: var(--surface);
   padding: 6rem 4rem;
 }
 
@@ -33,14 +32,47 @@
 }
 
 .about__value-card {
-  background: var(--surface2);
-  border: 1px solid var(--border);
-  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
   padding: 1.25rem 1.5rem;
   display: flex;
   align-items: flex-start;
   gap: 1.25rem;
-  transition: border-color 0.2s;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.about__value-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8%; right: 8%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.4), transparent);
+  pointer-events: none;
+}
+
+.about__value-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  border-radius: 14px;
+}
+
+.about__value-card:hover {
+  transform: translateX(6px);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .about__value-card:hover {
