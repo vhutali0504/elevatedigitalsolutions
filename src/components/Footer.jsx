@@ -77,7 +77,7 @@ export default function Footer() {
       <div className="footer__bottom">
         <span>© {new Date().getFullYear()} Elevate Digital Solutions. All rights reserved.</span>
         <span className="footer__legal">
-          Registered in South Africa · POPIA compliant
+          {/*Registered in South Africa · POPIA compliant*/}  
         </span>
       </div>
     </footer>
