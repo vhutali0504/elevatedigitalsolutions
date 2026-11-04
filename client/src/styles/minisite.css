@@ -1,0 +1,95 @@
+/* The little website inside the demos. It has its own look, and it responds to the width
+   of its own frame through container queries, exactly as a real site responds to a screen. */
+
+.ms-browser {
+  display: flex; flex-direction: column; height: 100%;
+  background: var(--paper); border-radius: 8px; overflow: hidden;
+  outline: 1px solid rgb(10 20 36 / 0.12);
+  container-type: inline-size;
+  transition: border-radius 400ms var(--ease-out);
+}
+.ms-browser--phone { border-radius: 22px; }
+
+.ms-bar { flex: none; display: flex; align-items: center; gap: 12px; height: 34px; padding: 0 12px; background: #E4E7EC; }
+.ms-dots { display: flex; gap: 5px; }
+.ms-dots i { width: 9px; height: 9px; border-radius: 50%; background: #B7BDC8; }
+.ms-url { flex: 1; max-width: 60cqw; padding: 1px 10px; border-radius: 4px; background: var(--paper); color: var(--soft); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.ms-viewport { position: relative; flex: 1; min-height: 0; overflow: hidden; }
+.ms { height: 100%; overflow: hidden; color: #15171C; font-size: clamp(11.5px, 1.72cqw, 15px); line-height: 1.35; }
+
+.ms-nav { display: flex; justify-content: space-between; align-items: center; gap: 1em; padding: 0.85em 1.4em; }
+.ms-logo { font-weight: 800; font-size: 1.15em; letter-spacing: -0.02em; color: var(--ms-accent); white-space: nowrap; }
+.ms-caret { display: inline-block; width: 2px; height: 1em; margin-left: 2px; vertical-align: -0.12em; background: currentColor; animation: ms-blink 900ms steps(2) infinite; }
+@keyframes ms-blink { 50% { opacity: 0; } }
+.ms-links { display: flex; gap: 1.1em; white-space: nowrap; align-items: center; }
+.ms-cart { display: inline-flex; gap: 0.4em; align-items: center; }
+.ms-cart b { display: inline-grid; place-items: center; min-width: 1.6em; height: 1.6em; border-radius: 50%; background: var(--ms-accent); color: #fff; font-size: 0.85em; }
+
+.ms-promo { padding: 0.5em 1.4em; background: var(--ms-accent); color: #fff; font-weight: 500; }
+
+.ms-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; background: #F3F1EC; }
+.ms-hero__text { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 0.55em; padding: 1.8em 1.4em; }
+.ms-h1 { font-size: 2.5em; font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; }
+.ms-p { max-width: 30ch; }
+.ms-btn { display: inline-block; margin-top: 0.3em; padding: 0.55em 1em; border-radius: 4px; background: var(--ms-accent); color: #fff; font-weight: 500; }
+.ms-hero__pic { overflow: hidden; min-height: 12em; max-height: 19em; }
+.ms-hero__pic img { width: 100%; height: 100%; object-fit: cover; }
+@media (prefers-reduced-motion: no-preference) {
+  .ms-drift { animation: ms-drift 9s ease-in-out infinite alternate; }
+}
+@keyframes ms-drift { from { transform: scale(1); } to { transform: scale(1.1) translateX(-2%); } }
+
+.ms-section { padding: 1em 1.4em; }
+.ms-h2 { font-size: 1.3em; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5em; }
+.ms-note { margin-top: 0.55em; font-weight: 500; color: var(--ms-accent); }
+
+.ms-tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5em; padding: 1em 1.4em 0; }
+.ms-tile { padding: 0.75em; background: #F3F1EC; border-radius: 4px; font-weight: 500; }
+
+.ms-slots { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0.4em; }
+.ms-slot { padding: 0.55em 0; text-align: center; border-radius: 4px; background: #F3F1EC; font-variant-numeric: tabular-nums; transition: background-color 240ms ease, color 240ms ease, transform 240ms var(--ease-out); }
+.ms-slot.is-on { background: var(--ms-accent); color: #fff; transform: scale(1.06); }
+
+.ms-products { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7em; padding: 1em 1.4em; }
+.ms-product { display: grid; gap: 0.4em; }
+.ms-product__pic { display: block; height: 6em; border-radius: 4px; background-size: 340% auto; }
+.ms-product__row { display: flex; justify-content: space-between; gap: 0.5em; }
+.ms-add { padding: 0.3em 0; text-align: center; border-radius: 4px; background: #F3F1EC; font-weight: 500; transition: background-color 240ms ease, color 240ms ease; }
+.ms-add.is-on { background: var(--ms-accent); color: #fff; }
+
+.ms-pay { display: flex; align-items: center; gap: 0.7em; padding: 0 1.4em 1em; }
+
+.ms-dash { margin: 1em 1.4em; padding: 1em; background: #F3F1EC; border-radius: 4px; }
+.ms-dash__row { display: grid; grid-template-columns: 1.3fr 1fr auto; gap: 0.5em; padding: 0.35em 0; }
+
+.ms-stats { display: flex; justify-content: space-between; align-items: flex-end; gap: 1em; margin: 1em 1.4em 0; padding: 0.7em 1em; background: #15171C; color: #fff; border-radius: 4px; }
+.ms-stats b { font-size: 1.5em; }
+.ms-bars { display: flex; align-items: flex-end; gap: 3px; height: 2.4em; width: 7em; }
+.ms-bars i { flex: 1; background: #fff; transform-origin: bottom; }
+
+.ms-map { margin: 1em 1.4em 0; height: 7em; overflow: hidden; border-radius: 4px; }
+.ms-map__svg { width: 100%; height: 100%; }
+
+.ms-form { display: flex; gap: 0.5em; align-items: stretch; padding-right: 4em; }
+.ms-form > span:not(.ms-btn) { flex: 1; padding: 0.5em 0.7em; background: #F3F1EC; border-radius: 4px; color: #4B4F58; }
+.ms-form .ms-btn { margin: 0; }
+
+.ms-wa { position: absolute; right: 1em; bottom: 1em; display: flex; align-items: center; gap: 8px; font-size: clamp(11.5px, 1.72cqw, 15px); }
+.ms-wa svg { width: 3em; height: 3em; padding: 0.55em; border-radius: 50%; background: #128C4A; }
+.ms-wa__chat { padding: 0.55em 0.8em; border-radius: 8px; background: #15171C; color: #fff; white-space: nowrap; transform-origin: right center; }
+
+/* Narrow frame: the same site, reflowed for a phone. */
+@container (max-width: 480px) {
+  .ms { font-size: 13px; overflow: hidden; }
+  .ms-links > span:not(.ms-cart) { display: none; }
+  .ms-hero { grid-template-columns: 1fr; }
+  .ms-hero__pic { order: -1; min-height: 8em; max-height: 8em; }
+  .ms-hero__text { padding: 1em 1.2em; }
+  .ms-h1 { font-size: 2em; }
+  .ms-slots { grid-template-columns: repeat(3, 1fr); }
+  .ms-products { grid-template-columns: repeat(2, 1fr); }
+  .ms-product__pic { height: 4.5em; }
+  .ms-tiles { grid-template-columns: 1fr; }
+  .ms-form { flex-direction: column; padding-right: 0; }
+}

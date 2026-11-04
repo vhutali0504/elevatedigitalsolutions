@@ -1,0 +1,51 @@
+/* Entrances use masks and clips rather than fades: text rises from behind its baseline,
+   paragraphs unroll, pictures open like a shutter. Hidden states exist only under .js,
+   only when motion is allowed, and each part is delayed by its --i. */
+
+.line { display: block; overflow: hidden; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.line__in { display: block; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal:not(.is-in) .line__in { transform: translateY(108%); }
+  .js .reveal.is-in .line__in {
+    transition: transform 900ms var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .js .reveal:not(.is-in) .rise,
+  .js .reveal:not(.is-in).rise {
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(22px);
+  }
+  .js .reveal.is-in .rise {
+    clip-path: inset(-12px -12px -12px -12px);
+    transition:
+      clip-path 760ms var(--ease-out) calc(var(--i, 0) * 80ms + 120ms),
+      transform 760ms var(--ease-out) calc(var(--i, 0) * 80ms + 120ms);
+  }
+
+  .js .reveal:not(.is-in) .shutter { clip-path: inset(0 0 100% 0); }
+  .js .reveal:not(.is-in) .shutter img { transform: scale(1.14); }
+  .js .reveal.is-in .shutter { transition: clip-path 1100ms var(--ease-in-out); clip-path: inset(0); }
+  .js .reveal.is-in .shutter img { transition: transform 1500ms var(--ease-out); }
+
+  /* The logo's chevron draws itself on load: the one moving part of the mark. */
+  .wordmark .logo__chev { stroke-dasharray: 1; animation: chev-draw 760ms var(--ease-out) 160ms both; }
+
+  /* The signature moment: the headline climbs out of its own baseline on load. */
+  .hero__title .line__in { animation: line-up 1000ms var(--ease-out) both; animation-delay: calc(var(--i) * 110ms + 150ms); }
+  .hero__aside .hero__pitch { animation: unroll 800ms var(--ease-out) 420ms both; }
+  .hero__note { animation: unroll 800ms var(--ease-out) 560ms both; }
+  .hero__frame { animation: frame-open 1100ms var(--ease-in-out) 80ms both; }
+}
+
+@keyframes chev-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes line-up { from { transform: translateY(108%); } to { transform: none; } }
+@keyframes unroll {
+  from { clip-path: inset(0 0 100% 0); transform: translateY(18px); }
+  to { clip-path: inset(-12px); transform: none; }
+}
+@keyframes frame-open {
+  from { clip-path: inset(100% 0 0 0); }
+  to { clip-path: inset(0); }
+}

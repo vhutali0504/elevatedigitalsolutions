@@ -27,3 +27,5 @@ dist-ssr
 # environment variables
 .env
 .env.local
+# design tooling output
+.taste-skill

@@ -1,0 +1,131 @@
+@font-face { font-family: 'Cabinet Grotesk'; src: url('/fonts/cabinet-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Cabinet Grotesk'; src: url('/fonts/cabinet-500.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Cabinet Grotesk'; src: url('/fonts/cabinet-800.woff2') format('woff2'); font-weight: 800; font-display: swap; }
+
+:root {
+  /* Colours from the brand board (docs/logo/eds-brand-board.svg). */
+  --bg: #F5F6F8;
+  --surface: #E9ECF1;
+  --paper: #FFFFFF;
+  --ink: #0A1424;
+  --soft: #4A5468;
+  --accent: #2F5BFF;
+  --accent-deep: #1F45D6;
+  --accent-ink: #FFFFFF;
+  --on-dark: #F5F6F8;
+  --on-dark-soft: #B9C2D2;
+  --error: #B3261E;
+  --error-on-dark: #FFB4A8;
+
+  --step-small: 0.9375rem;
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2.5rem, 1.2rem + 5vw, 5.5rem);
+  --step-display: clamp(3.25rem, 6.6vw, 6.5rem);
+
+  --gut: clamp(20px, 3.3vw, 48px);
+  --section: clamp(96px, 12vw, 176px);
+  --nav-h: 72px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --t-press: 140ms;
+  --t-hover: 180ms;
+  --t-ui: 240ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: var(--nav-h); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Cabinet Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: var(--step-body);
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+h1, h2, h3, p, ul, ol, dl, dd, figure, fieldset, legend { margin: 0; padding: 0; }
+ul, ol { list-style: none; }
+fieldset { border: 0; min-width: 0; }
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: inherit; }
+
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+.skip {
+  position: fixed; top: 8px; left: 8px; z-index: 100;
+  padding: 10px 16px; background: var(--ink); color: var(--on-dark);
+  transform: translateY(-200%);
+}
+.skip:focus { transform: none; }
+
+.head {
+  font-size: var(--step-head);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+.lead { font-size: var(--step-lead); line-height: 1.32; }
+.statement {
+  font-size: clamp(1.5rem, 1.1rem + 1.5vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+}
+
+/* One button: square, one flat fill. It answers by moving and deepening, never by fading. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 12px 26px;
+  border: 0; border-radius: 0;
+  background: var(--accent); color: var(--accent-ink);
+  font-weight: 500; text-decoration: none; cursor: pointer;
+  touch-action: manipulation;
+  transition: transform var(--t-press) var(--ease-out), background-color var(--t-hover) ease;
+}
+@media (hover: hover) { .btn:hover { background: var(--accent-deep); transform: translateY(-2px); } }
+.btn:active { transform: translateY(1px); }
+.btn[disabled] { cursor: progress; background: var(--soft); transform: none; }
+.btn--small { min-height: 44px; padding: 8px 18px; font-size: var(--step-small); }
+.btn--full { width: 100%; }
+.btn--invert { background: var(--paper); color: var(--ink); }
+@media (hover: hover) { .btn--invert:hover { background: var(--surface); } }
+.btn--quiet { background: var(--ink); }
+@media (hover: hover) { .btn--quiet:hover { background: var(--soft); } }
+
+.link {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  color: inherit; font: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: text-decoration-thickness var(--t-hover) ease, text-underline-offset var(--t-hover) ease;
+}
+@media (hover: hover) { .link:hover { text-decoration-thickness: 2px; text-underline-offset: 0.3em; } }
+
+.field label, .segments legend, .tiers legend { display: block; margin-bottom: 8px; font-weight: 500; }
+.field__opt { font-weight: 400; color: var(--soft); }
+.field input, .field select, .field textarea {
+  display: block; width: 100%; min-height: 52px; padding: 12px 14px;
+  border: 1px solid #7A8497; border-radius: 0; background: var(--paper);
+  font-size: 1.0625rem; /* at least 16px, so phones don't zoom on focus */
+  transition: border-color var(--t-hover) ease;
+}
+.field textarea { resize: vertical; }
+.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--ink); }
+.field__error { margin-top: 6px; color: var(--error); font-size: var(--step-small); font-weight: 500; }
+.has-error input, .has-error select, .has-error textarea { border-color: var(--error); border-width: 2px; }
+
+.page-loading { padding: var(--section) var(--gut); min-height: 60svh; font-size: var(--step-lead); }

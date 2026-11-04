@@ -1,16 +1,25 @@
-# React + Vite
+# Elevate Digital Solutions website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Marketing site for a freelance web development partnership in Johannesburg. React, Vite, Framer Motion and plain CSS, hosted on Netlify.
 
-Currently, two official plugins are available:
+## Run it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+    npm install
+    npm run dev       # local development
+    npm run build     # production build in dist/
+    npm run preview   # serve the production build
+    npm run lint
 
-## React Compiler
+The contact form needs these in a root `.env` file locally, and in the Netlify environment settings for production:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+    VITE_EMAILJS_SERVICE_ID
+    VITE_EMAILJS_TEMPLATE_ID
+    VITE_EMAILJS_PUBLIC_KEY
 
-## Expanding the ESLint configuration
+## Where things are
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `client/src/data/`: prices, FAQ, contact details and demo businesses. Most content edits happen here.
+- `client/src/components/home/`: the home page sections.
+- `client/src/components/MiniSite.jsx`: the small live website used in the hero and quote builder.
+- `client/src/pages/`: legal pages, thank-you page and 404.
+- `docs/DECISIONS.md`: why things are the way they are, and open items.
