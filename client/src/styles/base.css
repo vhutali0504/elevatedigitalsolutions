@@ -26,6 +26,7 @@
   --gut: clamp(20px, 3.3vw, 48px);
   --section: clamp(96px, 12vw, 176px);
   --nav-h: 72px;
+  --notice-h: 56px;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);

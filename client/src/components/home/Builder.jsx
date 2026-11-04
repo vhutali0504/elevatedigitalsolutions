@@ -5,7 +5,6 @@ import Reveal, { Line } from '../Reveal'
 import { CARE_PLAN, CATEGORIES, formatRand } from '../../data/packages'
 import { SAMPLES } from '../../data/samples'
 import { whatsappLink } from '../../data/site'
-import { zigzag } from '../../data/zigzag'
 
 function Rand({ value }) {
   const reduced = useReducedMotion()
@@ -142,7 +141,7 @@ export default function Builder({ pick, onQuote }) {
           </div>
         </div>
 
-        <aside className="slip builder__slip" style={{ clipPath: zigzag }} aria-label="Your quote" aria-live="polite">
+        <aside className="slip builder__slip" aria-label="Your quote" aria-live="polite">
           <p className="slip__title">Your quote</p>
           <p className="slip__sub">{name || 'Your business'}</p>
           <dl className="slip__rows">

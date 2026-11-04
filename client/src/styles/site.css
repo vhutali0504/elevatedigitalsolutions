@@ -35,6 +35,8 @@
   max-height: 1120px;
   padding: 8px var(--gut) clamp(28px, 5svh, 64px);
 }
+/* First visit: the cookie note sits above the bar, so the hero gives up its height to keep the button on screen. */
+#root:has(.consent) .hero { height: calc(100svh - var(--nav-h) - var(--notice-h)); }
 .hero__aside { grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
 .hero__note { max-width: 30ch; font-size: var(--step-small); color: var(--soft); }
 .hero__note .link { display: inline-block; margin-top: 8px; min-height: 24px; color: var(--ink); }
@@ -119,8 +121,13 @@
 .builder__device.is-phone { width: min(320px, 100%); }
 
 /* ---------- The slip: quotes and the process are both printed on it ---------- */
-.slip { background: var(--paper); color: var(--ink); font-size: 1rem; font-variant-numeric: tabular-nums; }
-.builder__slip { padding: 24px 22px 40px; position: sticky; top: calc(var(--nav-h) + 12px); }
+.slip { position: relative; background: var(--paper); color: var(--ink); font-size: 1rem; font-variant-numeric: tabular-nums; }
+/* The torn edge is a repeating image. A clip-path here delayed page scrolling by seconds. */
+.slip::after {
+  content: ''; position: absolute; left: 0; right: 0; top: 100%; height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='10'%3E%3Cpath d='M0 0h20L10 10z' fill='%23fff'/%3E%3C/svg%3E") repeat-x 0 0 / 20px 10px;
+}
+.builder__slip { padding: 24px 22px 30px; position: sticky; top: calc(var(--nav-h) + 12px); }
 .slip__title { font-size: var(--step-lead); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
 .slip__sub { color: var(--soft); overflow-wrap: anywhere; }
 .slip__rows { margin-top: 20px; display: grid; gap: 10px; }
@@ -143,7 +150,7 @@
 .process__intro .lead { margin-top: 28px; max-width: 34ch; }
 .process__feed { grid-column: 7 / 12; overflow: clip; padding-bottom: var(--section); }
 .process__mover { will-change: transform; }
-.process__slip { padding: 36px clamp(20px, 2.4vw, 36px) 44px; }
+.process__slip { padding: 36px clamp(20px, 2.4vw, 36px) 34px; }
 .slip__when { margin: 32px 0 14px; font-size: var(--step-lead); font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
 .process__slip > li:first-child .slip__when { margin-top: 0; }
 .itin { padding: 7px 0; }
@@ -282,7 +289,7 @@
 
 /* ---------- Phone: its own composition ---------- */
 @media (max-width: 760px) {
-  :root { --nav-h: 64px; }
+  :root { --nav-h: 64px; --notice-h: 92px; }
   .nav { grid-template-columns: 1fr auto; }
   .wordmark__wide { display: none; }
   .wordmark__narrow { display: block !important; }
@@ -295,7 +302,9 @@
   .nav__links.is-open { display: flex; }
   .nav__links .link { min-height: 44px; display: flex; align-items: center; font-size: var(--step-lead); }
 
-  .hero { display: flex; flex-direction: column; height: auto; min-height: calc(100svh - var(--nav-h)); max-height: none; row-gap: 18px; padding-bottom: 28px; }
+  .hero, #root:has(.consent) .hero { display: flex; flex-direction: column; height: auto; min-height: calc(100svh - var(--nav-h)); max-height: none; row-gap: 18px; padding-bottom: 28px; }
+  #root:has(.consent) .hero { min-height: calc(100svh - var(--nav-h) - var(--notice-h)); }
+  #root:has(.consent) .hero__stage { flex-basis: 220px; min-height: 220px; }
   .hero__aside { display: contents; }
   .hero__stage { order: 1; flex: 1 1 280px; min-height: 280px; max-height: 44svh; }
   .hero__title { order: 2; font-size: 13.4vw; }

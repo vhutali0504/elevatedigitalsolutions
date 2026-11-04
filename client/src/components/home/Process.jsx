@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import Reveal, { Line } from '../Reveal'
-import { zigzag } from '../../data/zigzag'
 
 const GROUPS = [
   {
@@ -43,7 +42,7 @@ export default function Process() {
       </Reveal>
       <div className="process__feed" ref={ref}>
         <motion.div className="process__mover" style={{ y }}>
-          <ol className="slip process__slip" style={{ clipPath: zigzag }}>
+          <ol className="slip process__slip">
             {GROUPS.map((g) => (
               <li key={g.when}>
                 <p className="slip__when">{g.when}</p>
