@@ -26,10 +26,10 @@
 
 ## Open items for the owner
 
-- Replace the EmailJS public key. On 2026-11-04 EmailJS rejected it with "The Public Key is invalid". The live site uses the same key, so its form is very likely failing too. Update it in `.env` and in Netlify, then send a real test message.
+- EmailJS public key: replaced in `.env` on 2026-11-04, and a real test send from the local build was accepted. It must also be updated in Netlify. The old key was rejected as invalid and may still be on the live site until then.
 - The owner has accepted the refund policy and confirmed the 24-hour reply and "backend, frontend and project management" wording (2026-11-04). A lawyer's review of the legal pages is still worthwhile.
 - Take `docs/TRADEMARK_NOTE.md` to a trademark attorney. The owner's free CIPC search (classes 35 and 42, 2026-11-04) found no live exact EDS mark and no results for ELEVATE DIGITAL SOLUTIONS or ELEVATE DIGITAL, but many registered and pending ELEVATE marks, so the site keeps leading with EDS. A web search on 2026-11-04 found other South African web businesses using "Elevate" names, including Elevate WebDev and Elevate Web in Centurion and Elevate Digitals in Cape Town.
-- Add a real street or postal address if one can be published. Only the city is shown now.
+- Address: the owner confirmed on 2026-11-04 that EDS is online-only with no physical address, so the site shows Johannesburg only. When the legal pages are reviewed, ask whether section 43 of the Electronic Communications and Transactions Act requires a physical address for this business, and what to publish if so.
 - Name an Information Officer and register with the Information Regulator if required under POPIA.
 - Confirm "backend, frontend and project management are each covered" and the 24-hour reply promise are still true.
 - Add EmailJS spending and rate limits, and an allowed-origin restriction, in the EmailJS dashboard.
